@@ -65,7 +65,6 @@ public class NamingHelperMain {
     for (int i = 0; i < namesList.size(); i++) {
       Name firstName = namesList.get(i);
       if (!firstName.onlyLast) {
-        System.out.println("Adding names beginning with " + firstName.name);
         for (int j = 0; j < namesList.size(); j++) {
           if (i != j) {
             Name middleName1 = namesList.get(j);
@@ -78,7 +77,8 @@ public class NamingHelperMain {
                       if (i != l && j != l && k != l) {
                         Name lastName = namesList.get(k);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
-                        if ((num % 2000000) == 0) {
+                        if ((num % 1000000) == 0) {
+                          System.out.println("Added name #" + num);
                           fillOutputFile("output4-" + fileNum + ".txt");
                           fileNum++;
                         }
