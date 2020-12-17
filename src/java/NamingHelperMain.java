@@ -27,6 +27,7 @@ public class NamingHelperMain {
           onlyLast = true;
         }
         namesList.add(new Name(nameProperties[0], nameProperties[1], nameProperties[2], onlyLast));
+        count++;
       }
     } catch (Exception e) {
       e.printStackTrace();
