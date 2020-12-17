@@ -37,7 +37,6 @@ public class NamingHelperMain {
       e.printStackTrace();
     }
     
-    int numNames = 0;
     int fileNum = 0;
     String fileName = "";
            
@@ -54,7 +53,7 @@ public class NamingHelperMain {
                 if (i != k && j != k) {
                   Name lastName = namesList.get(k);
                   fullNamesList.add(new FullName(firstName, middleName, lastName));
-                  if ((numNames % 1000000) == 0) {
+                  if ((fullNamesList.size() % 1000000) == 0) {
                     fileName = "output" + fileNum + ".txt";
                     fillOutputFile(fileName);
                     fileNum++;
@@ -86,7 +85,7 @@ public class NamingHelperMain {
                       if (i != l && j != l && k != l) {
                         Name lastName = namesList.get(l);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
-                        if ((numNames % 1000000) == 0) {
+                        if ((fullNamesList.size() % 1000000) == 0) {
                           fileName = "output" + fileNum + ".txt";
                           fillOutputFile(fileName);
                           fileNum++;
