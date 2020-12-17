@@ -44,7 +44,7 @@ Gorman,Irish,small; blue eyed,false
 Hadulfo,German,the combat wolf,false
 Hadwin,English,friend in a time of war,false
 Hamill,English,scarred,false
-Hamlin,"German, French",loves his home,false
+Hamlin,German/French,loves his home,false
 Hercules,Latin,glorious gift,false
 Herodes,Greek,the fire dragon,false
 Hildebrand,German,battle sword,false
@@ -61,7 +61,7 @@ Kirian,Irish,he who was born in a dark place,false
 Levant,Latin,rising,false
 Lokela,Hawaiian,a form of Roger,false
 Macaulay,Scottish,son of righteousness,false
-Macon,"German, English",maker,false
+Macon,German/English,maker,false
 Maddock,Welsh,generous,false
 Maidoc,Welsh,fortunate,false
 Majencio,Latin,he who becomes more famous,false
@@ -71,7 +71,7 @@ Menz,German,a short form of Clemet,false
 Murat,Turkish,wish come true,false
 Naldo,Spanish,a familiar form of Reginald,false
 Nazareno,Hebrew,he who has separated himself from the rest,false
-Neo,Greek/African,(Greek) new (African) gift,false
+Neo,,(Greek) new (African) gift,false
 Nepomuceno,Slavic,he who gives his help,false
 Nicandro,Greek,he who is victorious among men,false
 Nicasio,Greek,the victorious one,false
@@ -82,7 +82,7 @@ Okapi,Swahili,an African animal related to the giraffe but having a short neck,f
 Olufemi,Yoruba,wealth and honor favors me,false
 Onésimo,Greek,he who is useful and worthwhile,false
 Orion,Greek,son of fire,false
-"Pachacutec, Pachacutic",Quechua,he who changes the world,false
+Pachacutec/Pachacutic,Quechua,he who changes the world,false
 Pacho,Spanish,free,false
 Panteno,Greek,he who is worthy of all praise,false
 Patwin,Native American,man,false
@@ -93,7 +93,7 @@ Philander,Greek,lover of mankind,false
 Pinito,Greek,inspired; very wise,false
 Plinio,Latin,he who has many skills,false
 Poliano,Greek,he who suffers,false
-"Pomauari, Pumauari",Quechua,indomitable as a vicuna and strong as a puma,false
+Pomauari/Pumauari,Quechua,indomitable as a vicuna and strong as a puma,false
 Presidio,Latin,he who gives pleasant shelter,false
 Priamo,Greek,the rescued one,false
 Prilidiano,Greek,he who remembers things from the past,false
@@ -130,7 +130,7 @@ Zoyamor,Greek/Latin/me,lover of all living beings,false
 Animamo,Latin/me,lover of all living beings,false
 Animaphile,Greek/Latin/me,lover of all living beings,false
 Salustiano,German,he who enjoys good health,false
-"Salvio, Salvo",Latin,"cured, healthy",false
+Salvio/Salvo,Latin,"cured, healthy",false
 Sanyu,Luganda,happy,false
 Sapay,Quechua,unique,false
 Saitupac,Quechua,glorious prince,false
@@ -193,7 +193,7 @@ Wuliton,Native American,will do well,false
 Xeneroso,Latin,generous,false
 Xusto,Latin,"fair, just",false
 Yolyamanitzin,Nahuatl,just; tender and considerate person,false
-Yorick,English/Scandinavian,(English) farmer (Scandinavian) a form of George,false
+Yorick,,(English) farmer (Scandinavian) a form of George,false
 Zeki,Turkish,"clever, intelligent",false
 Zorba,Greek,live each day,false
 Wright,English,maker,false
