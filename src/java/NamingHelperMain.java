@@ -3,7 +3,7 @@ import java.util.*;
 
 public class NamingHelperMain {
   
-  List<FullName> fullNamesList = new ArrayList<>();
+  private static List<FullName> fullNamesList = new ArrayList<>();
   
   public static void main(String[] args) {
     // create List of names from namesList.csv
@@ -96,7 +96,7 @@ public class NamingHelperMain {
     
   }
   
-  private void fillOutputFile(String outputFileName) {
+  private static void fillOutputFile(String outputFileName) {
     Collections.shuffle(fullNamesList);
             
     File output = new File("../resources/" + outputFileName);
