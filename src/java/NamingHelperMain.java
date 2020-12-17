@@ -37,6 +37,7 @@ public class NamingHelperMain {
     List<FullName> fullNamesList = new ArrayList<>();
             
     // 3 name combinations
+    System.out.println("Beginning 3 name combinations...");
     for (int i = 0; i < namesList.size(); i++) {
       Name firstName = namesList.get(i);
       if (!firstName.onlyLast) {
@@ -57,6 +58,7 @@ public class NamingHelperMain {
     }
             
     // 4 name combinations
+    System.out.println("Done with 3, beginning 4 name combinations...");
     for (int i = 0; i < namesList.size(); i++) {
       Name firstName = namesList.get(i);
       if (!firstName.onlyLast) {
