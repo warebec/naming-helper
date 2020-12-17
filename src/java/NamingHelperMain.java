@@ -35,6 +35,8 @@ public class NamingHelperMain {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
+    int numNames = 0;
            
     // 3 name combinations
     System.out.println("Beginning 3 name combinations...");
@@ -49,6 +51,7 @@ public class NamingHelperMain {
                 if (i != k && j != k) {
                   Name lastName = namesList.get(k);
                   fullNamesList.add(new FullName(firstName, middleName, lastName));
+                  numNames++;
                 }
               }
             }
@@ -78,11 +81,11 @@ public class NamingHelperMain {
                         Name lastName = namesList.get(k);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
                         if ((num % 1000000) == 0) {
-                          System.out.println("Added name #" + num);
                           fillOutputFile("output4-" + fileNum + ".txt");
                           fileNum++;
                         }
                         num++;
+                        numNames++;
                       }
                     }
                   }
@@ -93,6 +96,9 @@ public class NamingHelperMain {
         }
       }
     }
+    fillOutputFile("output4-" + fileNum + ".txt");
+    fileNum = fileNum + 2;
+    System.out.println("Made " + numNames + " names in " + fileNum + " files.");
     
   }
   
