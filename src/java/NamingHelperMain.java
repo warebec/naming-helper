@@ -4,6 +4,7 @@ import java.util.*;
 public class NamingHelperMain {
   
   private static List<FullName> fullNamesList = new ArrayList<>();
+  private static List<String> fileNames = new ArrayList<>();
   
   public static void main(String[] args) {
     // create List of names from namesList.csv
@@ -97,9 +98,9 @@ public class NamingHelperMain {
       }
     }
     fillOutputFile("output4-" + fileNum + ".txt");
-    fileNum = fileNum + 2;
-    System.out.println("Made " + numNames + " names in " + fileNum + " files.");
+    System.out.println("Made " + numNames + " names in " + fileNames.size() + " files.");
     
+    mergeFilesIntoOne(numFiles);
   }
   
   private static void fillOutputFile(String outputFileName) {
@@ -125,5 +126,35 @@ public class NamingHelperMain {
     
     fullNamesList.clear();
     System.out.println(outputFileName + " completed!");
+  }
+  
+  private static void mergeFilesIntoOne(int numFiles) {
+    try {
+      List<BufferedReader> bufferedReaders = new ArrayList<>();
+      for (String fileName : fileNames) {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("../resources/" + fileName)));
+      }
+      
+      File output = new File("../resources/FullOutput.txt");
+      if (output.exists()) {
+        output.delete();
+      }
+      output.createNewFile();
+      FileWriter fileWriter = new FileWriter(output);
+      
+      int numNulls = 0;
+      while (numNulls < numFiles) {
+        numNulls = 0;
+        for (BufferedReader br : bufferedReaders) {
+          String line = br.readLine();
+          if (line != null) {
+            fileWriter.write(line + "\n");
+          } else {
+            numNulls++;
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
