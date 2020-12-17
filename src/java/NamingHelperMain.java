@@ -83,7 +83,7 @@ public class NamingHelperMain {
     }
     
     // next, shuffle the full names list to somewhat randomize the output
-    Collections.suffle(fullNamesList);
+    Collections.shuffle(fullNamesList);
             
     // finally, print full names to output.txt in format:
     //   - full name ::: origin and meaning of name
