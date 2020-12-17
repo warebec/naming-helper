@@ -59,6 +59,7 @@ public class NamingHelperMain {
             
     // 4 name combinations
     System.out.println("Done with 3, beginning 4 name combinations...");
+    int num;
     for (int i = 0; i < namesList.size(); i++) {
       Name firstName = namesList.get(i);
       if (!firstName.onlyLast) {
@@ -74,6 +75,7 @@ public class NamingHelperMain {
                       if (i != l && j != l && k != l) {
                         Name lastName = namesList.get(k);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
+                        System.out.println("Added name #" + num);
                       }
                     }
                   }
