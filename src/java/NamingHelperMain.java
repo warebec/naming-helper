@@ -63,9 +63,7 @@ public class NamingHelperMain {
     for (int i = 0; i < namesList.size(); i++) {
       Name firstName = namesList.get(i);
       if (!firstName.onlyLast) {
-        if ((num % 10) == 0) {
-          System.out.println("Adding names beginning with " + firstName.name);
-        }
+        System.out.println("Adding names beginning with " + firstName.name);
         for (int j = 0; j < namesList.size(); j++) {
           if (i != j) {
             Name middleName1 = namesList.get(j);
