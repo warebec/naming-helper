@@ -10,7 +10,7 @@ public class NamingHelperMain {
       String csvBreakBy = ",";
       int count = 0;
       
-      while ((line = bufferedReader.readLine()) != null && count < 30) {
+      while ((line = bufferedReader.readLine()) != null && count < 50) {
         String[] nameProperties = line.split(csvBreakBy);
         
         while (!("true".equals(nameProperties[3]) || "false".equals(nameProperties[3]))) {
@@ -56,8 +56,34 @@ public class NamingHelperMain {
         }
       }
     }
+    
+    // next, shuffle the full names list to somewhat randomize the output
+    System.out.println("About to shuffle fullNamesList of size: " + fullNamesList.size());
+    Collections.shuffle(fullNamesList);
+    System.out.println("Done shuffling");
             
+    // finally, print full names to output.txt in format:
+    //   - full name ::: origin and meaning of name
+    File output = new File("../resources/output3.txt");
+    try {
+      if (output.exists()) {
+        output.delete();
+      }
+      output.createNewFile();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+         
+    try (FileWriter fileWriter = new FileWriter(output)) {
+      for (FullName fullName : fullNamesList) {
+        fileWriter.write(fullName.toString() + "\n");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
     // 4 name combinations
+    fullNamesList.clear();
     System.out.println("Done with 3, beginning 4 name combinations...");
     int num = 1;
     for (int i = 0; i < namesList.size(); i++) {
@@ -77,8 +103,9 @@ public class NamingHelperMain {
                         Name lastName = namesList.get(k);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
                         if ((num % 10000) == 0) {
-                          System.out.println("Added name #" + num++);
+                          System.out.println("Added name #" + num);
                         }
+                        num++;
                       }
                     }
                   }
@@ -97,7 +124,7 @@ public class NamingHelperMain {
             
     // finally, print full names to output.txt in format:
     //   - full name ::: origin and meaning of name
-    File output = new File("../resources/output.txt");
+    File output = new File("../resources/output4.txt");
     try {
       if (output.exists()) {
         output.delete();
