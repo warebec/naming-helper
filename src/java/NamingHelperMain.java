@@ -60,7 +60,9 @@ public class NamingHelperMain {
         }
       }
     }
-    fillOutputFile("output3.txt");
+    String fileName = "output3.txt";
+    fillOutputFile(fileName);
+    fileNames.add(fileName);
     
     // 4 name combinations
     System.out.println("Done with 3, beginning 4 name combinations...");
@@ -82,8 +84,10 @@ public class NamingHelperMain {
                         Name lastName = namesList.get(k);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
                         if ((num % 1000000) == 0) {
-                          fillOutputFile("output4-" + fileNum + ".txt");
+                          fileName = "output4-" + fileNum + ".txt";
+                          fillOutputFile(fileName);
                           fileNum++;
+                          fileNames.add(fileName);
                         }
                         num++;
                         numNames++;
@@ -97,7 +101,9 @@ public class NamingHelperMain {
         }
       }
     }
-    fillOutputFile("output4-" + fileNum + ".txt");
+    fileName = "output4-" + fileNum + ".txt";
+    fillOutputFile(fileName);
+    fileNames.add(fileName);
     System.out.println("Made " + numNames + " names in " + fileNames.size() + " files.");
     
     mergeFilesIntoOne();
@@ -129,6 +135,8 @@ public class NamingHelperMain {
   }
   
   private static void mergeFilesIntoOne() {
+    Collections.shuffle(fileNames);
+    
     try {
       List<BufferedReader> bufferedReaders = new ArrayList<>();
       for (String fileName : fileNames) {
