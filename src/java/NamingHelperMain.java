@@ -39,6 +39,7 @@ public class NamingHelperMain {
     
     int numNames = 0;
     int fileNum = 0;
+    String fileName = "";
            
     // 3 name combinations
     System.out.println("Beginning 3 name combinations...");
