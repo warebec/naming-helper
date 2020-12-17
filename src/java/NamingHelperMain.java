@@ -143,7 +143,9 @@ public class NamingHelperMain {
       List<BufferedReader> bufferedReaders = new ArrayList<>();
       for (String fileName : fileNames) {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("../resources/" + fileName)));
+        bufferedReaders.add(bufferedReader);
       }
+      System.out.println("Successfully made " + bufferedReaders.size() + " readers");
       
       File output = new File("../resources/FullOutput.txt");
       if (output.exists()) {
@@ -154,7 +156,7 @@ public class NamingHelperMain {
       
       int numNulls = 0;
       int linesWritten = 0;
-      while (numNulls < fileNames.size()) {
+      while (numNulls < bufferedReaders.size()) {
         numNulls = 0;
         for (BufferedReader br : bufferedReaders) {
           String line = br.readLine();
