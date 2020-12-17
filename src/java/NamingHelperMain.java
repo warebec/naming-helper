@@ -151,6 +151,7 @@ public class NamingHelperMain {
             fileWriter.write(line + "\n");
           } else {
             numNulls++;
+          }
         }
       }
     } catch (Exception e) {
