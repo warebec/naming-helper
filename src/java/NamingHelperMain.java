@@ -100,7 +100,7 @@ public class NamingHelperMain {
     fillOutputFile("output4-" + fileNum + ".txt");
     System.out.println("Made " + numNames + " names in " + fileNames.size() + " files.");
     
-    mergeFilesIntoOne(numFiles);
+    mergeFilesIntoOne();
   }
   
   private static void fillOutputFile(String outputFileName) {
@@ -128,7 +128,7 @@ public class NamingHelperMain {
     System.out.println(outputFileName + " completed!");
   }
   
-  private static void mergeFilesIntoOne(int numFiles) {
+  private static void mergeFilesIntoOne() {
     try {
       List<BufferedReader> bufferedReaders = new ArrayList<>();
       for (String fileName : fileNames) {
@@ -143,7 +143,7 @@ public class NamingHelperMain {
       FileWriter fileWriter = new FileWriter(output);
       
       int numNulls = 0;
-      while (numNulls < numFiles) {
+      while (numNulls < fileNames.size()) {
         numNulls = 0;
         for (BufferedReader br : bufferedReaders) {
           String line = br.readLine();
