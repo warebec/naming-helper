@@ -132,8 +132,8 @@ public class NamingHelperMain {
       e.printStackTrace();
     }
     
+    System.out.println(outputFileName + " completed! Contains " + fullNamesList.size() + " names.");
     fullNamesList.clear();
-    System.out.println(outputFileName + " completed!");
   }
   
   private static void mergeFilesIntoOne() {
