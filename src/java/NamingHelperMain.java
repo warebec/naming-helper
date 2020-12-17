@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class NamingHelperMain {
-  public void main(String[] args) {
+  public static void main(String[] args) {
     // first, create List of names from namesList.csv
     List<Name> namesList = new ArrayList<>();
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("namesList.csv")))) {
