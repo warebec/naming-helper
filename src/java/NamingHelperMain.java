@@ -54,7 +54,7 @@ public class NamingHelperMain {
                 if (i != k && j != k) {
                   Name lastName = namesList.get(k);
                   fullNamesList.add(new FullName(firstName, middleName, lastName));
-                  if ((num % 1000000) == 0) {
+                  if ((numNames % 1000000) == 0) {
                     fileName = "output" + fileNum + ".txt";
                     fillOutputFile(fileName);
                     fileNum++;
