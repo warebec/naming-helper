@@ -64,17 +64,17 @@ public class NamingHelperMain {
             
     // finally, print full names to output.txt in format:
     //   - full name ::: origin and meaning of name
-    File output = new File("../resources/output3.txt");
+    File output3 = new File("../resources/output3.txt");
     try {
-      if (output.exists()) {
-        output.delete();
+      if (output3.exists()) {
+        output3.delete();
       }
-      output.createNewFile();
+      output3.createNewFile();
     } catch (Exception e) {
       e.printStackTrace();
     }
          
-    try (FileWriter fileWriter = new FileWriter(output)) {
+    try (FileWriter fileWriter = new FileWriter(output3)) {
       for (FullName fullName : fullNamesList) {
         fileWriter.write(fullName.toString() + "\n");
       }
@@ -124,17 +124,17 @@ public class NamingHelperMain {
             
     // finally, print full names to output.txt in format:
     //   - full name ::: origin and meaning of name
-    File output = new File("../resources/output4.txt");
+    File output4 = new File("../resources/output4.txt");
     try {
-      if (output.exists()) {
-        output.delete();
+      if (output4.exists()) {
+        output4.delete();
       }
-      output.createNewFile();
+      output4.createNewFile();
     } catch (Exception e) {
       e.printStackTrace();
     }
          
-    try (FileWriter fileWriter = new FileWriter(output)) {
+    try (FileWriter fileWriter = new FileWriter(output4)) {
       for (FullName fullName : fullNamesList) {
         fileWriter.write(fullName.toString() + "\n");
       }
