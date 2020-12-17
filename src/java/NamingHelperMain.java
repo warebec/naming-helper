@@ -2,8 +2,11 @@ import java.io.*;
 import java.util.*;
 
 public class NamingHelperMain {
+  
+  List<FullName> fullNamesList = new ArrayList<>();
+  
   public static void main(String[] args) {
-    // first, create List of names from namesList.csv
+    // create List of names from namesList.csv
     List<Name> namesList = new ArrayList<>();
     try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("../resources/namesList.csv")))) {
       String line = "";
@@ -32,10 +35,7 @@ public class NamingHelperMain {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    
-    // next, create List of full names based on that list
-    List<FullName> fullNamesList = new ArrayList<>();
-            
+           
     // 3 name combinations
     System.out.println("Beginning 3 name combinations...");
     for (int i = 0; i < namesList.size(); i++) {
@@ -56,36 +56,12 @@ public class NamingHelperMain {
         }
       }
     }
-    
-    // next, shuffle the full names list to somewhat randomize the output
-    System.out.println("About to shuffle fullNamesList of size: " + fullNamesList.size());
-    Collections.shuffle(fullNamesList);
-    System.out.println("Done shuffling");
-            
-    // finally, print full names to output.txt in format:
-    //   - full name ::: origin and meaning of name
-    File output3 = new File("../resources/output3.txt");
-    try {
-      if (output3.exists()) {
-        output3.delete();
-      }
-      output3.createNewFile();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-         
-    try (FileWriter fileWriter = new FileWriter(output3)) {
-      for (FullName fullName : fullNamesList) {
-        fileWriter.write(fullName.toString() + "\n");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    fillOutputFile("output3.txt");
     
     // 4 name combinations
-    fullNamesList.clear();
     System.out.println("Done with 3, beginning 4 name combinations...");
     int num = 1;
+    int fileNum = 0;
     for (int i = 0; i < namesList.size(); i++) {
       Name firstName = namesList.get(i);
       if (!firstName.onlyLast) {
@@ -102,8 +78,9 @@ public class NamingHelperMain {
                       if (i != l && j != l && k != l) {
                         Name lastName = namesList.get(k);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
-                        if ((num % 10000) == 0) {
-                          System.out.println("Added name #" + num);
+                        if ((num % 2000000) == 0) {
+                          fillOutputFile("output4-" + fileNum + ".txt");
+                          fileNum++;
                         }
                         num++;
                       }
@@ -117,29 +94,30 @@ public class NamingHelperMain {
       }
     }
     
-    // next, shuffle the full names list to somewhat randomize the output
-    System.out.println("About to shuffle fullNamesList of size: " + fullNamesList.size());
+  }
+  
+  private void fillOutputFile(String outputFileName) {
     Collections.shuffle(fullNamesList);
-    System.out.println("Done shuffling");
             
-    // finally, print full names to output.txt in format:
-    //   - full name ::: origin and meaning of name
-    File output4 = new File("../resources/output4.txt");
+    File output = new File("../resources/" + outputFileName);
     try {
-      if (output4.exists()) {
-        output4.delete();
+      if (output.exists()) {
+        output.delete();
       }
-      output4.createNewFile();
+      output.createNewFile();
     } catch (Exception e) {
       e.printStackTrace();
     }
          
-    try (FileWriter fileWriter = new FileWriter(output4)) {
+    try (FileWriter fileWriter = new FileWriter(output)) {
       for (FullName fullName : fullNamesList) {
         fileWriter.write(fullName.toString() + "\n");
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
+    fullNamesList.clear();
+    System.out.println(outputFileName + " completed!");
   }
 }
