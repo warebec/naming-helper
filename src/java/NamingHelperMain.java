@@ -13,7 +13,7 @@ public class NamingHelperMain {
       while ((line = bufferedReader.readLine()) != null && count < 50) {
         String[] nameProperties = line.split(csvBreakBy);
         
-        while (!("true".equals(nameProperties[3] || "false".equals(nameProperties[3]))) {
+        while (!("true".equals(nameProperties[3]) || "false".equals(nameProperties[3]))) {
           nameProperties[2] = nameProperties[2] + ", " + nameProperties[3];
           int index = 4;
           while (index < nameProperties.length) {
@@ -23,7 +23,7 @@ public class NamingHelperMain {
         }
         
         boolean onlyLast = false;
-        if ("true".equals(nameProperties[3]) {
+        if ("true".equals(nameProperties[3])) {
           onlyLast = true;
         }
         namesList.add(new Name(nameProperties[0], nameProperties[1], nameProperties[2], onlyLast));
