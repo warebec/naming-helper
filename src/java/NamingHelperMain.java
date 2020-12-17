@@ -10,7 +10,7 @@ public class NamingHelperMain {
       String csvBreakBy = ",";
       int count = 0;
       
-      while ((line = bufferedReader.readLine()) != null && count < 50) {
+      while ((line = bufferedReader.readLine()) != null && count < 15) {
         String[] nameProperties = line.split(csvBreakBy);
         
         while (!("true".equals(nameProperties[3]) || "false".equals(nameProperties[3]))) {
