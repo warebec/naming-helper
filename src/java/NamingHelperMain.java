@@ -10,7 +10,7 @@ public class NamingHelperMain {
       String csvBreakBy = ",";
       int count = 0;
       
-      while ((line = bufferedReader.readLine()) != null && count < 15) {
+      while ((line = bufferedReader.readLine()) != null && count < 50) {
         String[] nameProperties = line.split(csvBreakBy);
         
         while (!("true".equals(nameProperties[3]) || "false".equals(nameProperties[3]))) {
@@ -84,7 +84,9 @@ public class NamingHelperMain {
     }
     
     // next, shuffle the full names list to somewhat randomize the output
+    System.out.println("About to shuffle fullNamesList of size: " + fullNamesList.size());
     Collections.shuffle(fullNamesList);
+    System.out.println("Done shuffling");
             
     // finally, print full names to output.txt in format:
     //   - full name ::: origin and meaning of name
