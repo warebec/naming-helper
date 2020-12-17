@@ -38,6 +38,7 @@ public class NamingHelperMain {
     }
     
     int numNames = 0;
+    int fileNum = 0;
            
     // 3 name combinations
     System.out.println("Beginning 3 name combinations...");
@@ -52,6 +53,12 @@ public class NamingHelperMain {
                 if (i != k && j != k) {
                   Name lastName = namesList.get(k);
                   fullNamesList.add(new FullName(firstName, middleName, lastName));
+                  if ((num % 1000000) == 0) {
+                    fileName = "output" + fileNum + ".txt";
+                    fillOutputFile(fileName);
+                    fileNum++;
+                    fileNames.add(fileName);
+                  }
                   numNames++;
                 }
               }
@@ -60,14 +67,9 @@ public class NamingHelperMain {
         }
       }
     }
-    String fileName = "output3.txt";
-    fillOutputFile(fileName);
-    fileNames.add(fileName);
     
     // 4 name combinations
     System.out.println("Done with 3, beginning 4 name combinations...");
-    int num = 1;
-    int fileNum = 0;
     for (int i = 0; i < namesList.size(); i++) {
       Name firstName = namesList.get(i);
       if (!firstName.onlyLast) {
@@ -83,13 +85,12 @@ public class NamingHelperMain {
                       if (i != l && j != l && k != l) {
                         Name lastName = namesList.get(k);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
-                        if ((num % 1000000) == 0) {
-                          fileName = "output4-" + fileNum + ".txt";
+                        if ((numNames % 1000000) == 0) {
+                          fileName = "output" + fileNum + ".txt";
                           fillOutputFile(fileName);
                           fileNum++;
                           fileNames.add(fileName);
                         }
-                        num++;
                         numNames++;
                       }
                     }
@@ -101,7 +102,7 @@ public class NamingHelperMain {
         }
       }
     }
-    fileName = "output4-" + fileNum + ".txt";
+    fileName = "output" + fileNum + ".txt";
     fillOutputFile(fileName);
     fileNames.add(fileName);
     System.out.println("Made " + numNames + " names in " + fileNames.size() + " files.");
@@ -151,12 +152,17 @@ public class NamingHelperMain {
       FileWriter fileWriter = new FileWriter(output);
       
       int numNulls = 0;
+      int linesWritten = 0;
       while (numNulls < fileNames.size()) {
         numNulls = 0;
         for (BufferedReader br : bufferedReaders) {
           String line = br.readLine();
           if (line != null) {
             fileWriter.write(line + "\n");
+            linesWritten++;
+            if ((linesWritten % 1000000) == 0) {
+              System.out.println("Wrote " + linesWritten + " names to combo mega file!");
+            }
           } else {
             numNulls++;
           }
