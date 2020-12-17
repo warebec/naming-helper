@@ -84,7 +84,7 @@ public class NamingHelperMain {
                   if (!middleName2.onlyLast) {
                     for (int l = 0; l < namesList.size(); l++) {
                       if (i != l && j != l && k != l) {
-                        Name lastName = namesList.get(k);
+                        Name lastName = namesList.get(l);
                         fullNamesList.add(new FullName(firstName, middleName1, middleName2, lastName));
                         if ((numNames % 1000000) == 0) {
                           fileName = "output" + fileNum + ".txt";
