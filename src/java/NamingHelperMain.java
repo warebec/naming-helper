@@ -5,7 +5,7 @@ public class NamingHelperMain {
   public static void main(String[] args) {
     // first, create List of names from namesList.csv
     List<Name> namesList = new ArrayList<>();
-    try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("namesList.csv")))) {
+    try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("../resources/namesList.csv")))) {
       String line = "";
       String csvBreakBy = ",";
       int count = 0;
@@ -87,7 +87,7 @@ public class NamingHelperMain {
             
     // finally, print full names to output.txt in format:
     //   - full name ::: origin and meaning of name
-    File output = new File("output.txt");
+    File output = new File("../resources/output.txt");
     try {
       if (output.exists()) {
         output.delete();
