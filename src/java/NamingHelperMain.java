@@ -8,16 +8,13 @@ public class NamingHelperMain {
 
 	public static void main(String[] args) {
 
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
-
 		// create List of names from namesList.csv
 		List<Name> namesList = new ArrayList<>();
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/resources/namesList.csv")))) {
 			String line = "";
 			String csvBreakBy = ",";
-			int count = 0;
 
-			while ((line = bufferedReader.readLine()) != null && count < 5) {
+			while ((line = bufferedReader.readLine()) != null && namesList.size() < 5) {
 				String[] nameProperties = line.split(csvBreakBy);
 
 				while (!("true".equals(nameProperties[3]) || "false".equals(nameProperties[3]))) {
@@ -34,7 +31,6 @@ public class NamingHelperMain {
 					onlyLast = true;
 				}
 				namesList.add(new Name(nameProperties[0], nameProperties[1], nameProperties[2], onlyLast));
-				count++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -3,16 +3,16 @@ import java.util.*;
 
 public class NamingHelperBatchIntoFileMain {
 
-	private static final int BATCH_SIZE = 1500000;
+	private static final int BATCH_SIZE = 2500000;
 	private static List<String> fullNamesList = new ArrayList<>();
 
 	public static void main(String[] args) {
 
 		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 
-		// create List of names from namesList.csv
+		// create List of names from csv
 		List<Name> namesList = new ArrayList<>();
-		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/resources/namesList.csv")))) {
+		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("src/resources/reducedNamesList.csv")))) {
 			String line = "";
 			String csvBreakBy = ",";
 			int count = 0;
@@ -66,10 +66,10 @@ public class NamingHelperBatchIntoFileMain {
 									if (i != k && j != k) {
 										Name lastName = namesList.get(k);
 										fullNamesList.add((new FullName(firstName, middleName, lastName)).toString());
+										numNames++;
 										if ((fullNamesList.size() % BATCH_SIZE) == 0) {
 											writeOutput(fileWriter, numNames);
 										}
-										numNames++;
 									}
 								}
 							}
