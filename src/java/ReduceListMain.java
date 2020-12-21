@@ -3,81 +3,63 @@ import java.util.*;
 
 public class ReduceListMain {
 
-	private static final String INPUT_TXT = "src/resources/BatchedOutput.txt";
+	private static final String INPUT_TXT = "src/resources/output.txt";
 	private static final String OUTPUT_TXT = "src/resources/ReducedList.txt";
+	private static final int START_AT_LINE = 0;
+	private static final List<String> DISCARD_BEGINNING_WITH = new ArrayList<>(List.of());
+	private static final List<String> DISCARD_CONTAINING = new ArrayList<>(List.of());
 	
 	public static void main(String[] args) {
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(INPUT_TXT)));
 				Scanner scanner = new Scanner(System.in);
-				FileWriter fileWriter = new FileWriter(new File(OUTPUT_TXT))) {
+				FileWriter fileWriter = new FileWriter(new File(OUTPUT_TXT), true)) {
 			
 			List<String> names = new ArrayList<>();
 			String line = "";
-			int count = 1;
+			int countFromSource = 0;
+			int countToFile = 0;
 
 			while ((line = bufferedReader.readLine()) != null) {
+				countFromSource++;
+				if (countFromSource <= START_AT_LINE || isDiscardForBeginning(line) || isDiscardForContaining(line) || hasReginaldNotFirst(line)) {
+					continue;
+				}
+
 				names.add(line);
-				if (names.size() >= 5) {
-					// show random 2 to user
-					Random random = new Random();
-					int index1 = random.nextInt(names.size()-1);
-					int index2 = random.nextInt(names.size()-1);
-					while (index2 == index1) {
-						index2 = random.nextInt(names.size()-1);
+				if (names.size() >= 10) {
+					String displayOutput = "Please pick from the following options:\n";
+					int num = 0;
+					for (String name : names) {
+						displayOutput = displayOutput + num + ". " + name + "\n";
+						num++;
 					}
-					String name1 = names.get(index1);
-					String name2 = names.get(index2);
-					
-					String displayOutput = name1 + "\n" + name2 + "\n"
-							+ "Please pick from the following options:\n"
-							+ "1. keep only the first\n"
-							+ "2. keep only the second\n"
-							+ "3. keep both\n"
-							+ "4. discard both";
+					displayOutput = displayOutput + num + ". discard all";
 					System.out.println(displayOutput);
 					
-					// read input of which to keep, remove the other from the set
-					String choice = scanner.nextLine();
-					boolean choiceProcessed = false;
-					while (!choiceProcessed) {
-						choiceProcessed = true;
-						switch (choice) {
-						case "1":
-							names.remove(name2);
-							break;
-						case "2":
-							names.remove(name1);
-							break;
-						case "3":
-							break;
-						case "4":
-							names.remove(name1);
-							names.remove(name2);
-							break;
-						default:
-							choiceProcessed = false;
-							displayOutput = name1 + "\n" + name2 + "\n"
-									+ "Incorrect input. Please pick from the following options:\n"
-									+ "1. keep only the first\n"
-									+ "2. keep only the second\n"
-									+ "3. keep both\n"
-									+ "4. discard both";
-							System.out.println(displayOutput);
-							choice = scanner.nextLine();
+					// read input of which to keep, handle accordingly
+					while (true) {
+						String choice = scanner.nextLine();
+						int choiceInt = -1;
+						try {
+							choiceInt = Integer.parseInt(choice);
+						} catch (NumberFormatException nfe) {
+							System.out.println("Incorrect input. " + displayOutput);
+							continue;
 						}
-					}
-					
-					// if size > 10, put random 5 in output file and remove from list
-					if (names.size() > 10) {
-						for (int i = 1; i <= 5; i++) {
-							int index = random.nextInt(names.size()-1);
-							fileWriter.write(names.get(index) + "\n");
-							names.remove(index);
+						
+						if (choiceInt < 0 || choiceInt > num) {
+							System.out.println("Incorrect input. " + displayOutput);
+							continue;
 						}
+						if (choiceInt < num) {
+							fileWriter.write(names.get(choiceInt) + "\n");
+							countToFile++;
+						}
+						names.clear();
+						break;
 					}
-					System.out.println("Have read " + count + " lines from source; names list has " + names.size() + " options.\n");
+					System.out.println("Have read " + countFromSource + " lines from source and printed " + countToFile + " lines to destination.\n");
 				}
-				count++;
 			}
 			for (String name : names) {
 				fileWriter.write(name + "\n");
@@ -86,6 +68,31 @@ public class ReduceListMain {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static boolean hasReginaldNotFirst(String line) {
+		if (line.contains("Reginald")) {
+			return !line.startsWith("Reginald");
+		}
+		return false;
+	}
+
+	private static boolean isDiscardForContaining(String line) {
+		for (String containing : DISCARD_CONTAINING) {
+			if (line.contains(containing)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private static boolean isDiscardForBeginning(String line) {
+		for (String beginning : DISCARD_BEGINNING_WITH) {
+			if (line.startsWith(beginning)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
