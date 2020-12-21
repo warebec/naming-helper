@@ -3,11 +3,12 @@ import java.util.*;
 
 public class ReduceListMain {
 
-	private static final String INPUT_TXT = "src/resources/output.txt";
-	private static final String OUTPUT_TXT = "src/resources/ReducedList.txt";
-	private static final int START_AT_LINE = 0;
+	private static final String INPUT_TXT = "src/resources/reducedOutputV4.txt";
+	private static final String OUTPUT_TXT = "src/resources/reducedOutputV5.txt";
+	private static final int START_AFTER_LINE = 0;
 	private static final List<String> DISCARD_BEGINNING_WITH = new ArrayList<>(List.of());
-	private static final List<String> DISCARD_CONTAINING = new ArrayList<>(List.of());
+	private static final List<String> DISCARD_CONTAINING = new ArrayList<>(List.of("Philander", "Emeterio", "Fileas", "Hodgson", "Felix", "Blackburn",
+			"Darwin", "Yorick", "Phoenix", "Herodes", "Percival", "Quigley", "Bonito", "Wright", "Renatus", "Waterfall"));
 	
 	public static void main(String[] args) {
 		try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(INPUT_TXT)));
@@ -21,19 +22,19 @@ public class ReduceListMain {
 
 			while ((line = bufferedReader.readLine()) != null) {
 				countFromSource++;
-				if (countFromSource <= START_AT_LINE || isDiscardForBeginning(line) || isDiscardForContaining(line)) {
+				if (countFromSource <= START_AFTER_LINE || isDiscardForBeginning(line) || isDiscardForContaining(line)) {
 					continue;
 				}
 
 				names.add(line);
-				if (names.size() >= 7) {
+				if (names.size() >= 2) {
 					String displayOutput = "Please pick from the following options:\n";
 					int num = 0;
 					for (String name : names) {
 						displayOutput = displayOutput + num + ". " + name + "\n";
 						num++;
 					}
-					displayOutput = displayOutput + num + ". discard all";
+					displayOutput = displayOutput + num + ". discard both";
 					System.out.println(displayOutput);
 					
 					// read input of which to keep, handle accordingly
@@ -75,6 +76,15 @@ public class ReduceListMain {
 			if (line.contains(containing)) {
 				return true;
 			}
+		}
+		if (line.contains("Androcles") && line.contains("Zoyamor")) {
+			return true;
+		}
+		if (line.contains("NeoWilliams") && line.contains("Renatus")) {
+			return true;
+		}
+		if (line.contains("NeoWilliams") && line.contains("Gaylord")) {
+			return true;
 		}
 		return false;
 	}
