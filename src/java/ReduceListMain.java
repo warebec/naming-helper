@@ -21,12 +21,12 @@ public class ReduceListMain {
 
 			while ((line = bufferedReader.readLine()) != null) {
 				countFromSource++;
-				if (countFromSource <= START_AT_LINE || isDiscardForBeginning(line) || isDiscardForContaining(line) || hasReginaldNotFirst(line)) {
+				if (countFromSource <= START_AT_LINE || isDiscardForBeginning(line) || isDiscardForContaining(line)) {
 					continue;
 				}
 
 				names.add(line);
-				if (names.size() >= 10) {
+				if (names.size() >= 7) {
 					String displayOutput = "Please pick from the following options:\n";
 					int num = 0;
 					for (String name : names) {
@@ -68,13 +68,6 @@ public class ReduceListMain {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	private static boolean hasReginaldNotFirst(String line) {
-		if (line.contains("Reginald")) {
-			return !line.startsWith("Reginald");
-		}
-		return false;
 	}
 
 	private static boolean isDiscardForContaining(String line) {

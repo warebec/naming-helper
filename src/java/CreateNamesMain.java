@@ -45,11 +45,11 @@ public class CreateNamesMain {
 		int numNames = 0;
 
 		System.out.println("Making full name combinations...");
-		List<String> notFirstList = new ArrayList<>(List.of("Waterfall", "Phoenix", "Emerenciano", "Emeterio", "Herodes", "Androcles",
-				"Percival", "Quigley", "Medarno", "Fileas", "Yorick", "Bonito"));
+		List<String> neverFirstList = new ArrayList<>(List.of("Waterfall", "Phoenix", "Emeterio", "Herodes", "Androcles",
+				"Percival", "Quigley", "Fileas", "Yorick", "Bonito", "Philander", "Felix", "Renatus"));
 		for (int i = 0; i < namesList.size(); i++) {
 			Name firstName = namesList.get(i);
-			if (!firstName.onlyLast && !notFirstList.contains(firstName.name)) {
+			if (!firstName.onlyLast && !neverFirstList.contains(firstName.name)) {
 				for (int j = 0; j < namesList.size(); j++) {
 					if (i != j) {
 						Name middleName1 = namesList.get(j);
